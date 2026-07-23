@@ -2,6 +2,29 @@ import { KnowledgeArticle } from '../types';
 
 export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
   {
+    id: 'kb-kali-intro',
+    title: 'Kali Linux: среда, основные инструменты и первичная настройка',
+    category: 'Этичный Хакинг & Kali',
+    readingTimeMin: 16,
+    difficulty: 'Базовый',
+    lastUpdated: '2026-07-23',
+    tags: ['Kali Linux', 'Ethical Hacking', 'Penetration Testing', 'Nmap', 'Burp Suite', 'OWASP ZAP'],
+    summary: 'Практическое введение: разница Kali vs Debian, обновление, установка мета-пакетов, первые команды аудита и безопасный scope работ.',
+    cachedOffline: false,
+    content: `
+### Kali Linux как платформа аудита
+
+Это не просто дистрибутив, а подготовленная инфраструктура с сертифицированными инструментами и методологией. Выбирайте Kali, когда нужен законный scope и отчетность.
+
+### Безопасная настройка перед работой
+
+- Обновите: apt update && apt full-upgrade -y
+- Ограничьте интерфейс: используйте проводную лабораторную сеть или VPN-среду
+- Ведите журнал команд: history, timestamps
+- Зафиксируйте Rules of Engagement и NDA перед запуском сканеров
+    `
+  },
+  {
     id: 'kb-152fz',
     title: 'Полный гайд по ФЗ-152 "О персональных данных" и КИИ (187-ФЗ) для ИТ-специалистов',
     category: 'Законодательство & Нормативы',
@@ -270,5 +293,63 @@ ClientAliveCountMax 2
 2. **SELinux / AppArmor**: Мандатное управление доступом (MAC), ограничивающее возможности компрометированных веб-процессов (Nginx, PHP-FPM).
 3. **Auditd**: Мониторинг изменений критических файлов (\`/etc/passwd\`, \`/etc/sudoers\`).
     `
-  }
+  },
+  {
+    id: 'kb-kali-tools',
+    title: 'Практический穿透 Kali: разведка, сканирование, веб-аудит',
+    category: 'Этичный Хакинг & Kali',
+    readingTimeMin: 18,
+    difficulty: 'Продвинутый',
+    lastUpdated: '2026-07-23',
+    tags: ['Kali Linux', 'Nmap', 'Gobuster', 'Nikto', 'OWASP ZAP', 'Burp Suite', 'TryHackMe'],
+    summary: 'Порядок работ: пассивная OSINT → активная разведка → уязвимости веб-приложений. На примере разрешенных целей и лабораторий.',
+    cachedOffline: false,
+    content: `
+### Практический порядок аудита
+
+1. Пассивная разведка: WHOIS, DNS, поиск по имени/домену, утечки.
+2. Активная разведка: порт-сканер, версии сервисов, технологии.
+3. Веб-аудит: заголовки, CSP, cookies, proxy с записью.
+4. Валидация findings: воспроизводимость, impact, remediation.
+    `
+  },
+  {
+    id: 'kb-offensive-methodology',
+    title: 'Методология пентеста: Recon → Exploit → Post-Exploitation → Report',
+    category: 'Этичный Хакинг & Kali',
+    readingTimeMin: 15,
+    difficulty: 'Продвинутый',
+    lastUpdated: '2026-07-23',
+    tags: ['Penetration Testing', ' methodology', 'RoE', 'NDA', 'Reporting'],
+    summary: 'Как превратить разрозненные инструменты в повторяемый процесс с измеримым результатом и безопасной сдачей отчета.',
+    cachedOffline: false,
+    content: `
+### Этапы этичного пентеста
+
+1. **Reconnaissance**: определите цель, договор, Scope, RoE, NDA.
+2. **Scanning & Enumeration**: порты, сервисы, версии, учетки по умолчанию.
+3. **Exploitation**: воспроизводимые векторы только в разрешенном scope.
+4. **Post-Exploitation**: доказательство доступа, минимальный необходимый доступ.
+5. **Reporting**: severity, evidence, remediation, риск для бизнеса.
+    `
+  },
+  {
+    id: 'kb-certifications-roadmap',
+    title: 'Карта сертификаций: от Junior до Senior в кибербезопасности',
+    category: 'Карьера & Сертификации',
+    readingTimeMin: 12,
+    difficulty: 'Базовый',
+    lastUpdated: '2026-07-23',
+    tags: ['Certifications', 'OSCP', 'CEH', 'Security+', 'CISSP', 'CISA', 'Career'],
+    summary: 'Как пройти путь от первой сертификации к профилям Penetration Tester, SOC Analyst, CISO.',
+    cachedOffline: false,
+    content: `
+### Junior → Mid → Senior
+
+- **Junior**: CompTIA Security+, Cisco CCNA Cyber Ops, TryHackMe Pre-Security.
+- **Mid**: OSCP, CEH, BTL1.
+- **Senior**: CISSP, CISA, OSCE3, SANS GIAC.
+    `
+  },
+
 ];

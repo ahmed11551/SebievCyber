@@ -1,5 +1,18 @@
 import { CourseModule } from '../types';
 
+export const ADDITIONAL_COURSES_IDS = {
+  infosec: 'course-info-security-basics',
+  networks: 'course-network-basics',
+  pentest: 'course-pentest-basics',
+  malware: 'course-malware-basics',
+  redteam: 'course-red-teaming',
+  blueteam: 'course-blue-team',
+  compliance: 'course-compliance',
+  webapp: 'course-webapp-security',
+  cloud: 'course-cloud-security',
+  mobile: 'course-mobile-security',
+};
+
 export const COURSES_DATA: CourseModule[] = [
   {
     id: 'course-cyber-hygiene',
@@ -606,8 +619,292 @@ rule WebShell_PHP_Generic {
     ]
   },
   {
+    id: 'course-info-security-basics',
+    title: 'Основы информационной безопасности',
+    category: 'beginner',
+    description: 'CIA, типы угроз, регуляторика РФ: 152-ФЗ, 187-ФЗ, ФСБ/ФСТЭК. Базовый курс для новичков.',
+    iconName: 'ShieldCheck',
+    certificateTitle: 'Сертификат Основ ИБ',
+    lessons: [
+      {
+        id: 'les-infosec-1',
+        title: 'Урок 1. CIA и типы угроз',
+        durationMinutes: 20,
+        xpReward: 120,
+        description: 'Конфиденциальность, целостность, доступность. Классификация угроз: люди, ПО, сеть, физический доступ.',
+        contentMarkdown: `
+### CIA Triad
+
+Информационная безопасность строится на трех столпах:
+- **Confidentiality**: защита от несанкционированного доступа.
+- **Integrity**: защита от несанкционированного изменения.
+- **Availability**: доступность для авторизованных пользователей.
+
+### Типы угроз
+
+1. **Люди**: социальная инженерия, ошибки сотрудников, инсайдеры.
+2. **ПО**: вредоносное ПО, уязвимости, обновления.
+3. **Сеть**: DDoS, MITM, перехват трафика.
+4. **Физический доступ**: кража устройств, неавторизованный доступ к серверной.
+        `,
+        quiz: [
+          {
+            id: 'q-infosec-1',
+            question: 'Что означает "I" в CIA triad?',
+            options: ['Integration', 'Integrity', 'Isolation', 'Incident'],
+            correctAnswer: 1,
+            explanation: 'Integrity — целостность: защита от несанкционированного изменения.'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'course-network-basics',
+    title: 'Сети и протоколы',
+    category: 'beginner',
+    description: 'OSI/TCP-IP, DNS, HTTP/S, TLS, VPN. Практика: анализ трафика Wireshark.',
+    iconName: 'Network',
+    certificateTitle: 'Сертификат По Сетям И Протоколам',
+    lessons: [
+      {
+        id: 'les-net-1',
+        title: 'Урок 1. OSI и TCP/IP',
+        durationMinutes: 25,
+        xpReward: 130,
+        description: '7 уровней OSI, стек TCP/IP, порты, сокеты.',
+        contentMarkdown: `
+### Модель OSI
+
+1. Physical
+2. Data Link
+3. Network
+4. Transport
+5. Session
+6. Presentation
+7. Application
+
+### TCP/IP
+
+Практический стек:
+- Ethernet / Wi-Fi
+- IP
+- TCP/UDP
+- DNS/HTTP/TLS
+        `,
+        quiz: [
+          {
+            id: 'q-net-1',
+            question: 'Какой уровень OSI отвечает за маршрутизацию?',
+            options: ['Data Link', 'Network', 'Transport', 'Session'],
+            correctAnswer: 1,
+            explanation: 'Network layer отвечает за IP-адресацию и маршрутизацию.'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'course-pentest-basics',
+    title: 'Penetration Testing Basics',
+    category: 'intermediate',
+    description: 'Passive/active reconnaissance, Nmap, Burp Suite, OWASP ZAP, этика и документация.',
+    iconName: 'Crosshair',
+    certificateTitle: 'Сертификат Penetration Tester',
+    lessons: [
+      {
+        id: 'les-pentest-1',
+        title: 'Урок 1. Reconnaissance и Nmap',
+        durationMinutes: 28,
+        xpReward: 160,
+        description: 'Пассивная и активная разведка, сканирование портов, версий, ОС.',
+        contentMarkdown: `
+### Passive Reconnaissance
+
+WHOIS, DNS, Shodan, Censys, Google dorks.
+
+### Active Reconnaissance
+
+Nmap:
+- SYN scan
+- Version detection
+- OS detection
+        `,
+        quiz: [
+          {
+            id: 'q-pentest-1',
+            question: 'Какой тип сканирования Nmap менее заметен?',
+            options: ['TCP connect', 'SYN stealth', 'UDP scan', 'Ping sweep'],
+            correctAnswer: 1,
+            explanation: 'SYN stealth не завершает полное TCP-рукопожатие.'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'course-malware-basics',
+    title: 'Malware Analysis Basics',
+    category: 'intermediate',
+    description: 'Статический и динамический анализ, песочницы, IOC, YARA.',
+    iconName: 'Bug',
+    certificateTitle: 'Сертификат Аналитика Вредоносного ПО',
+    lessons: [
+      {
+        id: 'les-malware-1',
+        title: 'Урок 1. Статический анализ',
+        durationMinutes: 24,
+        xpReward: 150,
+        description: 'Строки, секции, импорты, хэши. Динамика: Procmon, Wireshark, Cuckoo.',
+        contentMarkdown: `
+### Статический анализ
+
+- Хэши MD5/SHA256
+- Строки и секции PE/ELF
+- Импорты и экспорты
+- YARA сигнатуры
+
+### Динамический анализ
+
+- Песочницы: Cuckoo, Any.Run
+- Procmon, Process Hacker
+- Wireshark, Regshot
+        `,
+        quiz: [
+          {
+            id: 'q-malware-1',
+            question: 'Что такое IOC в аналитике вредоносного ПО?',
+            options: ['Input/Output Controller', 'Indicator of Compromise', 'Internal Object Code', 'Internet Operations Center'],
+            correctAnswer: 1,
+            explanation: 'Indicator of Compromise — артефакт, указывающий на заражение.'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'course-webapp-security',
+    title: 'Web Application Security',
+    category: 'advanced',
+    description: 'XSS, SQLi, SSRF, CSRF, XXE, secure coding, Burp Suite.',
+    iconName: 'Globe',
+    certificateTitle: 'Сертификат Web Security Specialist',
+    lessons: [
+      {
+        id: 'les-web-1',
+        title: 'Урок 1. Защита от XSS и SQLi',
+        durationMinutes: 25,
+        xpReward: 160,
+        description: 'Типы XSS, CSP, output encoding, prepared statements, ORM.',
+        contentMarkdown: `
+### XSS Protection
+
+- Output encoding
+- CSP
+- HttpOnly/SameSite
+- Input validation
+
+### SQLi Protection
+
+- Prepared statements
+- ORM
+- Least privilege DB
+        `,
+        quiz: [
+          {
+            id: 'q-web-1',
+            question: 'Какой флаг предотвращает доступ JS к cookie?',
+            options: ['Secure', 'HttpOnly', 'SameSite', 'Domain'],
+            correctAnswer: 1,
+            explanation: 'HttpOnly запрещает document.cookie.'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'course-cloud-security',
+    title: 'Cloud Security',
+    category: 'advanced',
+    description: 'AWS/Azure/Yandex Cloud безопасность, IAM, S3, VPC, guardrails.',
+    iconName: 'Cloud',
+    certificateTitle: 'Сертификат Cloud Security Specialist',
+    lessons: [
+      {
+        id: 'les-cloud-1',
+        title: 'Урок 1. Shared Responsibility Model',
+        durationMinutes: 22,
+        xpReward: 150,
+        description: 'Ответственность провайдера и клиента, IAM, encryption, logging.',
+        contentMarkdown: `
+### Shared Responsibility Model
+
+- Provider: физическая безопасность, гипервизоры, сеть
+- Client: IAM, данные, ОС, доступ
+
+### S3 Security
+
+- Block public access
+- Bucket policies
+- Encryption at rest
+- Versioning + MFA delete
+        `,
+        quiz: [
+          {
+            id: 'q-cloud-1',
+            question: 'Кто отвечает за шифрование данных в S3?',
+            options: ['Только AWS', 'Только клиент', 'Оба: AWS и клиент', 'Nobody'],
+            correctAnswer: 2,
+            explanation: 'Shared Responsibility: AWS обеспечивает инфраструктуру, клиент — данные.'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'course-mobile-security',
+    title: 'Mobile Security',
+    category: 'advanced',
+    description: 'Android/iOS угрозы, reversing, obfuscation, MobSF, APKTool.',
+    iconName: 'Smartphone',
+    certificateTitle: 'Сертификат Mobile Security Specialist',
+    lessons: [
+      {
+        id: 'les-mobile-1',
+        title: 'Урок 1. Угрозы мобильных ОС',
+        durationMinutes: 22,
+        xpReward: 140,
+        description: 'Песочницы, разрешения, реверс, сниффинг, secure coding.',
+        contentMarkdown: `
+### Android
+
+- APK decompilation
+- Root detection bypass
+- SSL pinning bypass
+- Intent sniffing
+
+### iOS
+
+- Jailbreak detection
+- Keychain analysis
+- IPA reversing
+        `,
+        quiz: [
+          {
+            id: 'q-mobile-1',
+            question: 'Что такое APK?',
+            options: ['Apple Package', 'Android Package', 'Application Protocol Key', 'Advanced Protocol Kernel'],
+            correctAnswer: 1,
+            explanation: 'APK — формат пакета приложения Android.'
+          }
+        ]
+      }
+    ]
+  },
+  {
     id: 'course-red-teaming',
     title: 'Пентест & Этичный Хакинг: Методология и Инструменты',
+
     category: 'advanced',
     description: 'Изучите этапы проведения тестирования на проникновение: разведка (OSINT), сканирование Nmap, эксплуатация уязвимостей и составительный отчёт.',
     iconName: 'Crosshair',

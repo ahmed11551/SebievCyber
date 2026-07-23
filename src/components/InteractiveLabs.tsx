@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { ShieldCheck, Lock, AlertTriangle, Terminal, CheckCircle2, XCircle, Code2, RefreshCw, KeyRound, Sparkles } from 'lucide-react';
+import { ShieldCheck, Lock, AlertTriangle, Terminal, CheckCircle2, XCircle, Code2, RefreshCw, KeyRound, Sparkles, MailWarning, AlertOctagon } from 'lucide-react';
 
 interface LabProps {
-  labType: 'phishing-detector' | 'password-analyzer' | 'sqli-simulator' | 'encryption-lab' | 'header-checker';
+  labType: 'phishing-detector' | 'password-analyzer' | 'sqli-simulator' | 'encryption-lab' | 'header-checker' | 'xss-lab' | 'ssrf-lab' | 'phishing-simulator' | 'token-analyzer';
   onLabComplete?: (xpEarned: number) => void;
 }
 
@@ -318,7 +318,7 @@ export const InteractiveLabs: React.FC<LabProps> = ({ labType, onLabComplete }) 
             </div>
             <div className="flex items-center justify-between text-cyan-400">
               <span>X-Frame-Options:</span>
-              <span>DENY (Защита от Clickjacking)</span>
+              <span>DENY</span>
             </div>
             <div className="flex items-center justify-between text-amber-400">
               <span>X-Content-Type-Options:</span>
@@ -329,6 +329,121 @@ export const InteractiveLabs: React.FC<LabProps> = ({ labType, onLabComplete }) 
               <span>default-src 'self'</span>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* XSS LAB */}
+      {labType === 'xss-lab' && (
+        <div className="space-y-4">
+          <h4 className="text-lg font-semibold flex items-center gap-2">
+            <Code2 className="w-5 h-5 text-red-400" />
+            XSS лаборатория / безопасный preview
+          </h4>
+          <p className="text-sm text-slate-300">
+            Введите фрагмент для безопасного отображения. Цель: увидеть, как встроенный текст попадает в DOM и как снижается риск.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div>
+              <label className="block text-xs text-slate-400 mb-1">Ввод комментария:</label>
+              <input
+                type="text"
+                placeholder="Например: Привет, <b>мир</b>"
+                onInput={(e) => {
+                  const v = e.currentTarget.value;
+                  const preview = document.getElementById('xss-preview');
+                  if (preview) preview.innerHTML = `<!-- ${v.replace(/</g,'&lt;').replace(/>/g,'&gt;')} -->`;
+                }}
+                className="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded text-sm text-cyan-300"
+              />
+            </div>
+            <div>
+              <label className="block text-xs text-slate-400 mb-1">DOM-превью safe:</label>
+              <div id="xss-preview" className="p-3 bg-black border border-slate-800 rounded text-xs text-emerald-300 min-h-[40px]"></div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* SSRF LAB */}
+      {labType === 'ssrf-lab' && (
+        <div className="space-y-4">
+          <h4 className="text-lg font-semibold flex items-center gap-2">
+            <AlertOctagon className="w-5 h-5 text-indigo-400" />
+            SSRF симулятор / Allowlist-checker
+          </h4>
+          <p className="text-sm text-slate-300">
+            Проверка доступа к внутреннему resource через пользовательский URL. Ожидаемо: публичные домены разрешены, приватные/loopback запрещены.
+          </p>
+          <div className="p-4 bg-slate-950 rounded-lg border border-slate-800 space-y-2 font-mono text-xs">
+            <div className="flex items-center justify-between">
+              <span>Проверяемый URL:</span>
+              <input id="ssrf-input" placeholder="https://example.com" className="px-2 py-1 bg-black border border-slate-700 rounded text-slate-100 w-64" />
+              <button id="ssrf-btn" className="px-3 py-1 bg-indigo-600 hover:bg-indigo-500 text-white rounded">Проверить</button>
+            </div>
+            <div id="ssrf-result" className="text-slate-300"></div>
+          </div>
+          <script dangerouslySetInnerHTML={{ __html: `
+            (function(){
+              try {
+                const btn = document.getElementById('ssrf-btn');
+                const input = document.getElementById('ssrf-input');
+                const result = document.getElementById('ssrf-result');
+                if (!btn || !input || !result) return;
+                btn.addEventListener('click', () => {
+                  const v = input.value || '';
+                  const host = v.replace(/^https?:\\/\\//, '').split('/')[0].split(':')[0];
+                  const isPrivate = /^(10\\.|172\\.(1[6-9]|2\\d|3[01])\\.|192\\.168\\.|127\\.|0\\.)/.test(host);
+                  if (!v.trim()) { result.textContent = 'Введите URL'; result.className = 'text-red-300'; return; }
+                  if (isPrivate) { result.textContent = 'Блокировано: приватный/loopback хост'; result.className = 'text-red-300'; }
+                  else { result.textContent = 'Разрешено: публичный хост'; result.className = 'text-emerald-300'; }
+                });
+              } catch (e) { console.error(e); }
+            })();
+          ` }} />
+        </div>
+      )}
+
+      {/* PHISHING SIMULATOR */}
+      {labType === 'phishing-simulator' && (
+        <div className="space-y-4">
+          <h4 className="text-lg font-semibold flex items-center gap-2">
+            <MailWarning className="w-5 h-5 text-amber-400" />
+            Симулятор фишингового письма
+          </h4>
+          <p className="text-sm text-slate-300">
+            Оцените письмо по 3 признакам: домен отправителя, срочная просьба, подозрительная ссылка.
+          </p>
+          <ul className="text-xs text-slate-300 list-disc list-inside space-y-1">
+            <li>Домен с опечаткой или подозрительный — повышайте риск.</li>
+            <li>Срочность + требование пароля/карты — типичный маркер.</li>
+            <li>Не вводите данные на неподтвержденных доменах.</li>
+          </ul>
+          <div className="p-3 bg-slate-950 border border-slate-800 rounded text-xs text-slate-300">
+            Пример: тема "СРОЧНО! Подтвердите аккаунт", отправитель "support@beIain-security-check.ru", ссылка "https://login.beIain-security-check.ru/verify?token=99281"
+          </div>
+        </div>
+      )}
+
+      {/* TOKEN ANALYZER */}
+      {labType === 'token-analyzer' && (
+        <div className="space-y-4">
+          <h4 className="text-lg font-semibold flex items-center gap-2">
+            <KeyRound className="w-5 h-5 text-cyan-400" />
+            JWT Claims и риски
+          </h4>
+          <p className="text-sm text-slate-300">
+            Изучите Claims и почему алгоритм и срок действия — часть защиты.
+          </p>
+          <div className="p-3 bg-slate-950 border border-slate-800 rounded text-xs font-mono text-slate-300 space-y-1">
+            <div>Header: <code className="text-cyan-300">{'{'}"alg":"RS256","typ":"JWT"</code></div>
+            <div>Payload: <code className="text-cyan-300">{'{'}"sub":"user_42","exp":1750000000,"iss":"https://idp.example"</code></div>
+            <div>Подпись: <span className="text-amber-300">HMAC/RSA</span></div>
+          </div>
+          <ul className="text-xs text-slate-300 list-disc list-inside space-y-1">
+            <li>Проверяйте <span className="text-cyan-300">exp</span> и <span className="text-cyan-300">iss</span>.</li>
+            <li>Не допускайте <span className="text-red-300">alg=none</span>.</li>
+            <li>Используйте RS256 для межсервисной коммуникации.</li>
+          </ul>
         </div>
       )}
     </div>

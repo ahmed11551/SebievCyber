@@ -43,7 +43,7 @@ export interface Lesson {
   xpReward: number;
   description: string;
   contentMarkdown: string;
-  interactiveLabType?: 'phishing-detector' | 'password-analyzer' | 'sqli-simulator' | 'encryption-lab' | 'header-checker';
+  interactiveLabType?: 'phishing-detector' | 'password-analyzer' | 'sqli-simulator' | 'encryption-lab' | 'header-checker' | 'xss-lab' | 'ssrf-lab' | 'phishing-simulator' | 'token-analyzer';
   quiz: QuizQuestion[];
 }
 
