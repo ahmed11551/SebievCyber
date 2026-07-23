@@ -1,0 +1,6 @@
+{
+  "name": "CyberShield Academy",
+  "description": "Интерактивная образовательная платформа по кибербезопасности: курсы, тесты, базы знаний, сертификаты, аналитика прогресса, форум и мониторинг угроз.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
