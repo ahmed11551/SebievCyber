@@ -827,6 +827,48 @@ Nmap:
             explanation: 'Indicator of Compromise — артефакт, указывающий на заражение.'
           }
         ]
+      },
+      {
+        id: 'les-malware-2',
+        title: 'Урок 2. Динамический анализ и поведение вредоносного ПО',
+        durationMinutes: 26,
+        xpReward: 160,
+        description: 'Procmon, Wireshark, Any.Run. Сетевой IOC, вирусные экс weer, LNK persistence.',
+        contentMarkdown: `
+### Динамика в песочнице
+
+Собираем поведенческие IOC: registry keys, network calls, startup paths.
+        `,
+        quiz: [
+          {
+            id: 'q-malware-2',
+            question: 'Какой инструмент чаще всего используют для динамического анализа установленных сервисов и автозапуска?',
+            options: ['Burp Suite', 'Wireshark', 'Procmon', 'Nmap'],
+            correctAnswer: 2,
+            explanation: 'Process Monitor показывает файлы, реестр и сетевые события.'
+          }
+        ]
+      },
+      {
+        id: 'les-malware-3',
+        title: 'Урок 3. YARA правила и отчетность по инцидентам',
+        durationMinutes: 22,
+        xpReward: 140,
+        description: 'Написание YARA правил, формат отчета SOC2/ISO. Эскалация инцидента.',
+        contentMarkdown: `
+### YARA rule basics
+
+Минимизируем false positives, ограничиваем по mime и extensions.
+        `,
+        quiz: [
+          {
+            id: 'q-malware-3',
+            question: 'Для чего создают YARA rule?',
+            options: ['Для шифрования файлов', 'Для классификации вредоносных образцов по строкам/behavior', 'Для отправки email', 'Для развертывания ботов'],
+            correctAnswer: 1,
+            explanation: 'YARA позволяет детектировать вредоносные файлы по статическим признакам.'
+          }
+        ]
       }
     ]
   },
