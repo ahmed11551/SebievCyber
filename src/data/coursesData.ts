@@ -725,7 +725,29 @@ rule WebShell_PHP_Generic {
 3. **ФСТЭК/ФСБ** — отраслевые требования.
 `,
         quiz: [{"id": "q-info-2", "question": "Какой закон регулирует персональные данные?", "options": ["187-ФЗ", "152-ФЗ", "115-ФЗ", "126-ФЗ"], "correctAnswer": 1, "explanation": "152-ФЗ регулирует обработку персональных данных."}]
-      }]
+      }
+      ,      {
+        id: 'les-infosec-3',
+        title: 'Урок 3. Управление инцидентами и SOC базовые практики',
+        durationMinutes: 18,
+        xpReward: 110,
+        description: 'Классификация инцидентов, escalation, triage, блокировка учеток, коммуникация.',
+        contentMarkdown: `
+
+### Классификация инцидентов
+- Confidentiality breach
+- Integrity violation
+- Availability loss
+### SOC baseline
+1. Identify и classify
+2. Contain
+3. Eradicate
+4. Recover
+5. Lessons learned
+        `,
+        quiz: [{"id": "q-infosec-3", "question": "Что первое делают при инциденте утечки данных?", "options": ["Удаляют все логи", "Classify, triage и contain", "Оповещают конкурентов", "Перезагружают сервера"], "correctAnswer": 1, "explanation": "Сначала classify/triage, потом contain, чтобы ограничить blast radius."}]
+      }
+      ]
   },
   {
     id: 'course-network-basics',
@@ -786,7 +808,27 @@ rule WebShell_PHP_Generic {
 Удалены старые cipher suites, 1-RTT handshake, ключевые преимущества: скорость и безопасность.
 `,
         quiz: [{"id": "q-net-2", "question": "Какой протокол обеспечивает шифрование веб-трафика?", "options": ["HTTP", "DNS", "TLS", "FTP"], "correctAnswer": 2, "explanation": "TLS шифрует транспортный уровень, обеспечивая HTTPS."}]
-      }]
+      }
+      ,      {
+        id: 'les-net-3',
+        title: 'Урок 3. VPN, Wireshark и анализ сетевых угроз',
+        durationMinutes: 20,
+        xpReward: 130,
+        description: 'VPN типы, туннелирование, анализ capture в Wireshark, порты IOC.',
+        contentMarkdown: `
+
+### VPN типы
+- Site-to-Site
+- Remote Access
+### Wireshark quick start
+1. Capture на интерфейсе
+2. Фильтр: ip.addr == X
+3. Follow TCP stream
+4. Ищем IOC по портам и DNS
+        `,
+        quiz: [{"id": "q-net-3", "question": "Какой фильтр Wireshark покажет только трафик к IP?", "options": ["tcp.flags.syn == 1", "ip.addr == x.x.x.x", "http", "dns"], "correctAnswer": 1, "explanation": "ip.addr фильтрует по источнику/назначению IP."}]
+      }
+      ]
   },
   {
     id: 'course-pentest-basics',
@@ -841,7 +883,25 @@ Nmap:
 Никогда не тестируйте без письменного разрешения. Сохраняйте доказательства и пишите отчет.
 `,
         quiz: [{"id": "q-pent-2", "question": "Что требуется перед тестированием production?", "options": ["Ничего", "Четкий письменный scope и RoE", "Пароль от root", "Достаточно интернета"], "correctAnswer": 1, "explanation": "Пентест всегда требует письменного Rules of Engagement и scope."}]
-      }]
+      }
+      ,      {
+        id: 'les-pentest-3',
+        title: 'Урок 3. Постинтеграция, постэксплуатация и чистка следов',
+        durationMinutes: 22,
+        xpReward: 140,
+        description: 'Persistence, lateral movement, evidence collection, cleanup, secure reporting.',
+        contentMarkdown: `
+
+### Постинтеграция
+- Сбор credentials
+- Сканирование внутренней сети
+- Документирование findings
+### Cleanup
+Удаление временных файлов, reverting config changes, comments в history.
+        `,
+        quiz: [{"id": "q-pentest-3", "question": "Зачем нужен cleanup после пентеста?", "options": ["Чтобы ускорить сеть", "Чтобы устранить риски и не оставлять следы", "Чтобы удалить отчет", "Чтобы перезагрузить firewall"], "correctAnswer": 1, "explanation": "Cleanup предотвращает инциденты и сохраняет trust."}]
+      }
+      ]
   },
   {
     id: 'course-malware-basics',
@@ -1030,7 +1090,27 @@ Nmap:
           }
         ]
       }
-    ]
+    
+      ,      {
+        id: 'les-cloud-2',
+        title: 'Урок 2. S3, IAM, Guardrails и Compromise Detection',
+        durationMinutes: 22,
+        xpReward: 150,
+        description: 'Bucket policies, Deny principals, CloudTrail, GuardDuty, incident simulation.',
+        contentMarkdown: `
+
+### S3 guardrails
+- Block Public Access
+- Bucket policy Deny unencrypted uploads
+### IAM
+- Least privilege
+- Conditional access
+### Detection
+CloudTrail + GuardDuty + Security Hub alerts.
+        `,
+        quiz: [{"id": "q-cloud-2", "question": "Какой сервис AWS фокусируется на threat detection?", "options": ["EC2", "GuardDuty", "S3", "IAM"], "correctAnswer": 1, "explanation": "Amazon GuardDuty анализирует logs на угрозы."}]
+      }
+      ]
   },
   {
     id: 'course-mobile-security',
@@ -1114,7 +1194,27 @@ Nmap:
           }
         ]
       }
-    ]
+    
+      ,      {
+        id: 'les-mobile-4',
+        title: 'Урок 4. Reverse engineering iOS и Android практика',
+        durationMinutes: 24,
+        xpReward: 150,
+        description: 'Smali, Frida scripts, runtime tracing, jailbreak/root detection анализ.',
+        contentMarkdown: `
+
+### Android
+- apktool + JADX
+- Frida trace
+- SSL pinning bypass
+### iOS
+- class-dump
+- Frida on iOS
+- jailbreak checks bypass
+        `,
+        quiz: [{"id": "q-mobile-4", "question": "Что такое IPA в контексте iOS?", "options": ["iOS Application Archive", "iOS App Store Package", "Internet Packet Analyzer", "Internal Password Archive"], "correctAnswer": 0, "explanation": "IPA — формат приложения iOS для установки/анализа."}]
+      }
+      ]
   },
   {
     id: 'course-red-teaming',
@@ -1227,6 +1327,26 @@ hydra -l admin -P /usr/share/wordlists/rockyou.txt ssh://127.0.0.1 -V
           }
         ]
       }
-    ]
+    
+      ,      {
+        id: 'les-red-4',
+        title: 'Урок 4. Методология PTES и структурированный отчёт',
+        durationMinutes: 20,
+        xpReward: 150,
+        description: 'PTES фазы, threat modeling, evidence, executive summary, remediation roadmap.',
+        contentMarkdown: `
+
+### PTES phases
+1. Pre-engagement
+2. Intelligence gathering
+3. Threat modeling
+4. Vulnerability analysis
+5. Exploitation
+6. Post exploitation
+7. Reporting
+        `,
+        quiz: [{"id": "q-red-4", "question": "Какой стандарт описывает фазы пентеста структурированно?", "options": ["PTES", "ISO 9001", "PCI DSS", "NIST SP 800-53"], "correctAnswer": 0, "explanation": "PTES — эталонная методология пентеста."}]
+      }
+      ]
   }
 ];
