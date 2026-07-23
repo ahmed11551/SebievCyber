@@ -1251,6 +1251,53 @@ GuardDuty + CloudWatch + Security Hub.
             "explanation": "Databases размещают в private subnet без direct public access."
           }
         ]
+      },
+      {
+        id: 'les-cloud-4',
+        title: 'Урок 4. IAM avanzato: условия, MFA, permission boundaries',
+        durationMinutes: 22,
+        xpReward: 150,
+        description: 'IAM conditions, MFA enforcement, permission boundaries, SCP baseline.',
+        contentMarkdown: `
+### IAM harden
+- Enforce MFA
+- Conditions: source IP, MFA
+- Permission boundaries
+### SCP
+- Deny dangerous actions org-wide
+        `,
+        quiz: [
+          {
+            id: 'q-cloud-4',
+            question: 'Какой механизм ограничивает максимальные права IAM сущности?',
+            "options": ["Bucket policy", "Permission boundaries", "CloudTrail", "Security Hub"],
+            "correctAnswer": 1,
+            "explanation": "Permission boundaries задают максимальный предел прав для IAM identity."
+          }
+        ]
+      },
+      {
+        id: 'les-cloud-5',
+        title: 'Урок 5. Incident Response и取证 в облаке',
+        durationMinutes: 20,
+        xpReward: 140,
+        description: 'CloudTrail анализ, EventBridge,取证快照, isolation EC2, communications.',
+        contentMarkdown: `
+### IR playbook
+1. Detect via GuardDuty / Security Hub
+2. Isolate compromised instance
+3. Collect取证快照 и logs
+4. Eradicate и remediate
+        `,
+        quiz: [
+          {
+            id: 'q-cloud-5',
+            question: 'Что помогает изолировать скомпрометированный EC2?',
+            "options": ["Security group deny all", "S3 delete", "IAM disable", "CloudWatch reset"],
+            "correctAnswer": 0,
+            "explanation": "Изменение security group на deny all сразу изолирует инстанс."
+          }
+        ]
       }]
   },
   {
