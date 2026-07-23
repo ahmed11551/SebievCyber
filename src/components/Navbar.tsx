@@ -1,6 +1,6 @@
 import React from 'react';
 import { UserProgress, ThemeMode } from '../types';
-import { ShieldCheck, Flame, Award, BookOpen, AlertCircle, MessageSquare, Trophy, User, Sun, Moon, CloudCheck, Palette, Bell, Sparkles, Zap, UserPlus, MessageCircle, LayoutGrid } from 'lucide-react';
+import { ShieldCheck, Flame, Award, BookOpen, AlertCircle, MessageSquare, Trophy, User, Sun, Moon, CloudCheck, Palette, Bell, Sparkles, Zap, UserPlus, MessageCircle, LayoutGrid, Settings2 } from 'lucide-react';
 
 interface NavbarProps {
   currentTab: string;
@@ -55,6 +55,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'chat', label: 'Чат', icon: MessageCircle },
     { id: 'collab', label: 'Задачи', icon: Flame },
     { id: 'pricing', label: 'Тарифы', icon: LayoutGrid },
+    { id: 'admin', label: 'Админка', icon: Settings2 },
     { id: 'profile', label: 'Личный Кабинет', icon: User },
   ];
 

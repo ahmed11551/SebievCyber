@@ -15,6 +15,7 @@ import { FriendsView } from './components/FriendsView';
 import { ChatView } from './components/ChatView';
 import { CollabView } from './components/CollabView';
 import { PricingView } from './components/PricingView';
+import { AdminView } from './components/AdminView';
 import { CertificateModal } from './components/CertificateModal';
 import { VipMentorshipModal } from './components/VipMentorshipModal';
 import { LoginPage } from './pages/LoginPage';
@@ -203,6 +204,8 @@ export default function App() {
         {currentTab === 'collab' && <CollabView />}
 
         {currentTab === 'pricing' && <PricingView />}
+
+        {currentTab === 'admin' && <AdminView />}
 
         {currentTab === 'profile' && (
           <ProfileView
