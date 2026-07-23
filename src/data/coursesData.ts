@@ -1145,6 +1145,30 @@ Nmap:
             "explanation": "Safe parser и запрет внешних сущностей предотвращают XXE."
           }
         ]
+      }      ,      {
+        id: 'les-web-3',
+        title: 'Урок 3. XXE, Secure Coding и Burp Suite практика',
+        durationMinutes: 26,
+        xpReward: 160,
+        description: 'XXE атаки, secure coding baselines, Burp Suite scanner практика.',
+        contentMarkdown: `
+### XXE basics
+- External Entity parsing
+- SSRF via DTD
+### Secure coding
+- Input validation + output encoding
+- Use safe parsers
+        `,
+        interactiveLabType: 'header-checker',
+        quiz: [
+          {
+            id: 'q-web-4',
+            question: 'Что защищает от XXE на уровне парсера?',
+            "options": ["Разрешить все сущности", "Disable external entities / use safe parser", "Отключить JS", "Использовать HTTP GET"],
+            "correctAnswer": 1,
+            "explanation": "Safe parser и запрет внешних сущностей предотвращают XXE."
+          }
+        ]
       }]
   },
   {
