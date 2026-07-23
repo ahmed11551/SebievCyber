@@ -657,7 +657,22 @@ rule WebShell_PHP_Generic {
           }
         ]
       }
-    ]
+    
+      ,      {
+        id: 'les-infosec-2',
+        title: 'Урок 2. Регуляторика и нормативные акты РФ',
+        durationMinutes: 20,
+        xpReward: 120,
+        description: '152-ФЗ, 187-ФЗ, требования ФСТЭК/ФСБ, baseline документы.',
+        contentMarkdown: `
+### Нормативная база
+
+1. **152-ФЗ** — персональные данные.
+2. **187-ФЗ** — критическая информационная инфраструктура.
+3. **ФСТЭК/ФСБ** — отраслевые требования.
+`,
+        quiz: [{"id": "q-info-2", "question": "Какой закон регулирует персональные данные?", "options": ["187-ФЗ", "152-ФЗ", "115-ФЗ", "126-ФЗ"], "correctAnswer": 1, "explanation": "152-ФЗ регулирует обработку персональных данных."}]
+      }]
   },
   {
     id: 'course-network-basics',
@@ -702,7 +717,23 @@ rule WebShell_PHP_Generic {
           }
         ]
       }
-    ]
+    
+      ,      {
+        id: 'les-net-2',
+        title: 'Урок 2. DNS, HTTP/S и TLS',
+        durationMinutes: 22,
+        xpReward: 130,
+        description: 'Как работает DNS, структура HTTP, роли TLS 1.3 и основные заголовки.',
+        contentMarkdown: `
+### DNS
+
+Иерархия корневых серверов, recursive resolver, authoritative server. Атаки: cache poisoning.
+
+### TLS 1.3
+Удалены старые cipher suites, 1-RTT handshake, ключевые преимущества: скорость и безопасность.
+`,
+        quiz: [{"id": "q-net-2", "question": "Какой протокол обеспечивает шифрование веб-трафика?", "options": ["HTTP", "DNS", "TLS", "FTP"], "correctAnswer": 2, "explanation": "TLS шифрует транспортный уровень, обеспечивая HTTPS."}]
+      }]
   },
   {
     id: 'course-pentest-basics',
@@ -740,7 +771,24 @@ Nmap:
           }
         ]
       }
-    ]
+    
+      ,      {
+        id: 'les-pentest-2',
+        title: 'Урок 2. Burp Suite, OWASP ZAP, этика и правила тестирования',
+        durationMinutes: 25,
+        xpReward: 150,
+        description: 'Настройка прокси, intercept, repeater, scanner. Правила поведения при пентесте.',
+        contentMarkdown: `
+### Орудия
+- Burp Suite Professional / Community
+- OWASP ZAP
+- MITM proxy
+
+### Правила
+Никогда не тестируйте без письменного разрешения. Сохраняйте доказательства и пишите отчет.
+`,
+        quiz: [{"id": "q-pent-2", "question": "Что требуется перед тестированием production?", "options": ["Ничего", "Четкий письменный scope и RoE", "Пароль от root", "Достаточно интернета"], "correctAnswer": 1, "explanation": "Пентест всегда требует письменного Rules of Engagement и scope."}]
+      }]
   },
   {
     id: 'course-malware-basics',
