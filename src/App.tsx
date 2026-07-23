@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { UserProgress, Certificate, ThreatItem } from './types';
 import { loadUserProgress, saveUserProgress } from './utils/storage';
 import { COURSES_DATA } from './data/coursesData';
@@ -12,6 +13,8 @@ import { LeaderboardView } from './components/LeaderboardView';
 import { ProfileView } from './components/ProfileView';
 import { CertificateModal } from './components/CertificateModal';
 import { VipMentorshipModal } from './components/VipMentorshipModal';
+import { LoginPage } from './pages/LoginPage';
+import { RegisterPage } from './pages/RegisterPage';
 import { TrojanHorseArena } from './components/TrojanHorseArena';
 import { AIAssistantDrawer } from './components/AIAssistantDrawer';
 import { ShieldAlert, X, Bell } from 'lucide-react';
@@ -95,8 +98,30 @@ export default function App() {
     }
   };
 
+  const handleAuth = () => {
+    setUser(prev => ({
+      ...prev,
+      isLoggedIn: true,
+      fullName: 'Алексей Петров',
+      email: 'alexey@example.com'
+    }));
+  };
+
+  if (!user.isLoggedIn) {
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<LoginPage onLogin={handleAuth} />} />
+          <Route path="/register" element={<RegisterPage onRegister={handleAuth} />} />
+          <Route path="*" element={<Navigate to="/login" replace />} />
+        </Routes>
+      </BrowserRouter>
+    );
+  }
+
   return (
-    <div className={`min-h-screen ${getThemeClass()} flex flex-col font-sans selection:bg-cyan-500 selection:text-white`}>
+    <BrowserRouter>
+      <div className={`min-h-screen ${getThemeClass()} flex flex-col font-sans selection:bg-cyan-500 selection:text-white`}>
       {/* Navbar */}
       <Navbar
         currentTab={currentTab}
@@ -224,6 +249,7 @@ export default function App() {
           <span className="font-mono text-cyan-400">Облачная Синхронизация Активна • PWA / Offline Mode</span>
         </div>
       </footer>
-    </div>
+      </div>
+    </BrowserRouter>
   );
 }
