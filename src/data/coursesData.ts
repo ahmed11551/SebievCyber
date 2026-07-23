@@ -1120,6 +1120,31 @@ Nmap:
             "explanation": "Safe parser и запрет внешних сущностей предотвращают XXE."
           }
         ]
+      },
+      {
+        id: 'les-web-3',
+        title: 'Урок 3. XXE, Secure Coding и Burp Suite практика',
+        durationMinutes: 26,
+        xpReward: 160,
+        description: 'XXE атаки, secure coding baselines, Burp Suite scanner практика.',
+        contentMarkdown: `
+### XXE basics
+- External Entity parsing
+- SSRF via DTD
+### Secure coding
+- Input validation + output encoding
+- Use safe parsers
+        `,
+        interactiveLabType: 'header-checker',
+        quiz: [
+          {
+            id: 'q-web-4',
+            question: 'Что защищает от XXE на уровне парсера?',
+            "options": ["Разрешить все сущности", "Disable external entities / use safe parser", "Отключить JS", "Использовать HTTP GET"],
+            "correctAnswer": 1,
+            "explanation": "Safe parser и запрет внешних сущностей предотвращают XXE."
+          }
+        ]
       }]
   },
   {
@@ -1179,7 +1204,30 @@ CloudTrail + GuardDuty + Security Hub alerts.
         `,
         quiz: [{"id": "q-cloud-2", "question": "Какой сервис AWS фокусируется на threat detection?", "options": ["EC2", "GuardDuty", "S3", "IAM"], "correctAnswer": 1, "explanation": "Amazon GuardDuty анализирует logs на угрозы."}]
       }
-      ]
+      ,
+      {
+        id: 'les-cloud-3',
+        title: 'Урок 3. VPC, GuardDuty, Incident Response в облаке',
+        durationMinutes: 22,
+        xpReward: 150,
+        description: 'Security groups, NACL, GuardDuty alerts, CloudWatch Events, IR playbook.',
+        contentMarkdown: `
+### VPC baseline
+- Public / private subnets
+- Security groups как firewall
+### Detection
+GuardDuty + CloudWatch + Security Hub.
+        `,
+        quiz: [
+          {
+            id: 'q-cloud-3',
+            question: 'Где размещают базы в AWS по best practice?',
+            "options": ["В публичном subnet", "В private subnet без public IP", "В S3 bucket", "В IAM"],
+            "correctAnswer": 1,
+            "explanation": "Databases размещают в private subnet без direct public access."
+          }
+        ]
+      }]
   },
   {
     id: 'course-mobile-security',
