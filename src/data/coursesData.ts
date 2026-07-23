@@ -1016,6 +1016,50 @@ Nmap:
             explanation: 'APK — формат пакета приложения Android.'
           }
         ]
+      },
+      {
+        id: 'les-mobile-2',
+        title: 'Урок 2. Статический разбор APK и MobSF',
+        durationMinutes: 24,
+        xpReward: 150,
+        description: 'Decompilation APKTool, JADX, MobSF отчеты, пермишены, коды шифрования.',
+        contentMarkdown: `
+### Инструменты
+
+- APKTool: декомпиляция ресурсов.
+- JADX: Java/smali анализ.
+- MobSF: автоматический отчет по permissions и vulnerabilities.
+        `,
+        quiz: [
+          {
+            id: 'q-mobile-2',
+            question: 'Что чаще всего считают критичным при статическом анализе APK?',
+            options: ['Цвет иконки','Небезопасные permissions и hardcoded secrets','Размер APK','Количество Aktivitet'],
+            correctAnswer: 1,
+            explanation: 'Permissions и embedded secrets — основные критичные findings.'
+          }
+        ]
+      },
+      {
+        id: 'les-mobile-3',
+        title: 'Урок 3. SSL Pinning, Runtime Protection и обфускация',
+        durationMinutes: 26,
+        xpReward: 160,
+        description: 'SSL pinning bypass, Frida, anti-debug/anti-tampering, obfuscation ProGuard/R8.',
+        contentMarkdown: `
+### SSL Pinning
+
+Проверка fingerprints сертификата внутри приложения.
+        `,
+        quiz: [
+          {
+            id: 'q-mobile-3',
+            question: 'Какой инструмент используют для SSL pinning bypass?',
+            options: ['Wireshark','Frida','Burp Passive','Nmap'],
+            correctAnswer: 1,
+            explanation: 'Frida позволяет hooking и обходить runtime protections.'
+          }
+        ]
       }
     ]
   },
