@@ -907,6 +907,34 @@ Nmap:
             options: ['Secure', 'HttpOnly', 'SameSite', 'Domain'],
             correctAnswer: 1,
             explanation: 'HttpOnly запрещает document.cookie.'
+          },
+          {
+            id: 'q-web-2',
+            question: 'Что лучше всего защищает от CSRF на уровне приложения?',
+            options: ['CORS only', 'Anti-CSRF токены', 'Отключение cookies', 'Rate limiting'],
+            correctAnswer: 1,
+            explanation: 'С勻ochastic anti-CSRF токен в формах защищает от подделки запросов.'
+          }
+        ]
+      },
+      {
+        id: 'les-web-2',
+        title: 'Урок 2. SSRF, CSRF и безопасные заголовки',
+        durationMinutes: 24,
+        xpReward: 150,
+        description: 'Объяснение SSRF, SSRF в облаке, CSRF токены, SameSite cookies, secure headers.',
+        contentMarkdown: `
+### SSRF
+
+Пример: загрузка изображения по URL, сервер обращается к внутреннему адресу.
+        `,
+        quiz: [
+          {
+            id: 'q-web-3',
+            question: 'Какой заголовок помогает ограничить SSRF?',
+            options: ['X-XSS-Protection', 'Content-Type', 'Fetch Metadata / DNS-pinning / allowlist', 'User-Agent'],
+            correctAnswer: 2,
+            explanation: 'Используйте allowlist разрешенных доменов и prevent SSRF.'
           }
         ]
       }
