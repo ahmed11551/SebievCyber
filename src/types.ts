@@ -144,3 +144,38 @@ export interface KnowledgeArticle {
   lastUpdated: string;
   cachedOffline: boolean;
 }
+
+export interface Friend {
+  id: string;
+  name: string;
+  avatar: string;
+  level: number;
+  status: 'online' | 'offline';
+  xp: number;
+  lastActive: string;
+  isCurrentUser?: boolean;
+}
+
+export interface ChatMessage {
+  id: string;
+  senderId: string;
+  text: string;
+  timestamp: string;
+  type: 'text' | 'system';
+}
+
+export interface ChatRoom {
+  id: string;
+  participants: string[];
+  messages: ChatMessage[];
+}
+
+export interface CollabTask {
+  id: string;
+  title: string;
+  description: string;
+  assignees: string[];
+  status: 'open' | 'in_progress' | 'done';
+  courseId?: string;
+  tags: string[];
+}

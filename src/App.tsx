@@ -11,6 +11,9 @@ import { ThreatMonitorView } from './components/ThreatMonitorView';
 import { ForumView } from './components/ForumView';
 import { LeaderboardView } from './components/LeaderboardView';
 import { ProfileView } from './components/ProfileView';
+import { FriendsView } from './components/FriendsView';
+import { ChatView } from './components/ChatView';
+import { CollabView } from './components/CollabView';
 import { CertificateModal } from './components/CertificateModal';
 import { VipMentorshipModal } from './components/VipMentorshipModal';
 import { LoginPage } from './pages/LoginPage';
@@ -191,6 +194,12 @@ export default function App() {
         {currentTab === 'leaderboard' && (
           <LeaderboardView />
         )}
+
+        {currentTab === 'friends' && <FriendsView />}
+
+        {currentTab === 'chat' && <ChatView />}
+
+        {currentTab === 'collab' && <CollabView />}
 
         {currentTab === 'profile' && (
           <ProfileView
