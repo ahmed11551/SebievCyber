@@ -828,7 +828,29 @@ rule WebShell_PHP_Generic {
         `,
         quiz: [{"id": "q-net-3", "question": "Какой фильтр Wireshark покажет только трафик к IP?", "options": ["tcp.flags.syn == 1", "ip.addr == x.x.x.x", "http", "dns"], "correctAnswer": 1, "explanation": "ip.addr фильтрует по источнику/назначению IP."}]
       }
-      ]
+      ,      {
+        id: 'les-net-4',
+        title: 'Урок 4. Wireshark в бою и IOC по трафику',
+        durationMinutes: 20,
+        xpReward: 130,
+        description: 'Capture & filters, Follow TCP stream, IOC hunting по портам и DNS.',
+        contentMarkdown: `
+### Wireshark IOC hunting
+1. Capture + save pcapng
+2. Filter: ip.addr == X
+3. Follow -> TCP stream
+4. And search frames: tcp.port == 4444 or dns.qry.name contains ...
+        `,
+        quiz: [
+          {
+            id: 'q-net-4',
+            question: 'Как экспортировать HTTP объекты из Wireshark?',
+            options: ['TCP dump', 'File -> Export Objects -> HTTP', 'DNS export', 'ICMP redirect'],
+            correctAnswer: 1,
+            explanation: 'Export Objects HTTP извлекает объекты из трафика.'
+          }
+        ]
+      }]
   },
   {
     id: 'course-pentest-basics',

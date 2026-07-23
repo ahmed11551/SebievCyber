@@ -3,19 +3,15 @@ from pathlib import Path
 p = Path('src/data/coursesData.ts')
 text = p.read_text()
 
-# Find course-info-security-basics lessons array end
-marker = "id: 'course-info-security-basics',"
+marker = "id: 'course-network-basics',"
 idx = text.find(marker)
 if idx == -1:
-    print('course not found')
-    exit(1)
+    raise SystemExit('course not found')
 
 ls = text.find('lessons: [', idx)
 if ls == -1:
-    print('lessons array not found')
-    exit(1)
+    raise SystemExit('lessons array not found')
 
-# Find matching closing bracket
 brace = 0
 le = None
 for i in range(ls, len(text)):
@@ -28,39 +24,33 @@ for i in range(ls, len(text)):
             break
 
 if le is None:
-    print('no matching bracket')
-    exit(1)
+    raise SystemExit('no matching bracket')
 
 new_lesson = '''
       {
-        id: 'les-infosec-3',
-        title: 'Урок 3. Управление инцидентами и SOC базовые практики',
-        durationMinutes: 18,
-        xpReward: 110,
-        description: 'Классификация инцидентов, escalation, triage, блокировка учеток, коммуникация.',
+        id: 'les-net-4',
+        title: 'Урок 4. Wireshark в бою и IOC по трафику',
+        durationMinutes: 20,
+        xpReward: 130,
+        description: 'Capture & filters, Follow TCP stream, IOC hunting по портам и DNS.',
         contentMarkdown: `
-### Классификация инцидентов
-- Confidentiality breach
-- Integrity violation
-- Availability loss
-### SOC baseline
-1. Identify и classify
-2. Contain
-3. Eradicate
-4. Recover
-5. Lessons learned
+### Wireshark IOC hunting
+1. Capture + save pcapng
+2. Filter: ip.addr == X
+3. Follow -> TCP stream
+4. And search frames: tcp.port == 4444 or dns.qry.name contains ...
         `,
         quiz: [
           {
-            id: 'q-infosec-3',
-            question: 'Что первое делают при инциденте утечки данных?',
-            options: ['Удаляют все логи', 'Classify, triage и contain', 'Оповещают конкурентов', 'Перезагружают сервера'],
+            id: 'q-net-4',
+            question: 'Как экспортировать HTTP объекты из Wireshark?',
+            options: ['TCP dump', 'File -> Export Objects -> HTTP', 'DNS export', 'ICMP redirect'],
             correctAnswer: 1,
-            explanation: 'Сначала classify/triage, потом contain, чтобы ограничить blast radius.'
+            explanation: 'Export Objects HTTP извлекает объекты из трафика.'
           }
         ]
       }'''
 
 text = text[:le] + new_lesson + text[le:]
 p.write_text(text)
-print('inserted les-infosec-3 successfully')
+print('inserted les-net-4 successfully')
