@@ -922,8 +922,31 @@ Nmap:
 Удаление временных файлов, reverting config changes, comments в history.
         `,
         quiz: [{"id": "q-pentest-3", "question": "Зачем нужен cleanup после пентеста?", "options": ["Чтобы ускорить сеть", "Чтобы устранить риски и не оставлять следы", "Чтобы удалить отчет", "Чтобы перезагрузить firewall"], "correctAnswer": 1, "explanation": "Cleanup предотвращает инциденты и сохраняет trust."}]
-      }
-      ]
+      },
+      {
+        id: 'les-pentest-4',
+        title: 'Урок 4. Отчётность и remediation roadmap',
+        durationMinutes: 20,
+        xpReward: 140,
+        description: 'Executive summary, remediation priorities, evidence, customer handoff.',
+        contentMarkdown: `
+### Report structure
+1. Executive summary
+2. Technical findings
+3. Evidence
+4. Remediation plan
+5. Retest scope
+        `,
+        quiz: [
+          {
+            id: 'q-pentest-4',
+            question: 'Что такое executive summary?',
+            options: ['Полный исходный код эксплойта', 'Краткий обзор рисков для руководства', 'Список всех портов', 'Скриншот root-shell'],
+            correctAnswer: 1,
+            explanation: 'Executive summary — краткий риск-ориентированный отчёт для бизнеса.'
+          }
+        ]
+      }]
   },
   {
     id: 'course-malware-basics',
