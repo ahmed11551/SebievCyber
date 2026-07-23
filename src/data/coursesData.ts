@@ -1027,8 +1027,29 @@ Nmap:
             explanation: 'YARA позволяет детектировать вредоносные файлы по статическим признакам.'
           }
         ]
-      }
-    ]
+      },
+      {
+        id: 'les-malware-3',
+        title: 'Урок 3. YARA, IOC и отчет по вредоносному ПО',
+        durationMinutes: 24,
+        xpReward: 160,
+        description: 'YARA правила, IOC формат, Arkime/Suricata интеграция и блокировка индикаторов.',
+        contentMarkdown: `
+### YARA basics
+- Rule structure: meta/strings/condition
+### IOC format
+- file hash, domain, ip, yara rules
+        `,
+        quiz: [
+          {
+            id: 'q-malware-3',
+            question: 'Какой формат чаще используют для описания IOC?',
+            "options": ["YAML", "STIX/TAXII", "Markdown", "PNG"],
+            "correctAnswer": 1,
+            "explanation": "STIX/TAXII — стандарты описания и обмена IOC."
+          }
+        ]
+      }]
   },
   {
     id: 'course-webapp-security',
